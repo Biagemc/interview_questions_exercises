@@ -21,3 +21,37 @@
 // }
 
 // console.log(sumOfTwo([10, 15, 3, 7], 18));
+
+// This problem was asked by Uber.
+// Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
+// For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+
+// function product(a, b) {
+//   return a * b;
+// }
+// function productSum(array) {
+//   let newArray = [];
+//   let totalProduct = array.reduce(product, 1);
+//   let newValue;
+//   array.forEach((value) => {
+//     newValue = totalProduct / value;
+//     newArray.push(newValue);
+//   });
+//   return newArray;
+// }
+// console.log(productSum([3, 2, 1]));
+
+// or;
+
+// function product(a, b) {
+//   return a * b;
+// }
+// function productSum(array) {
+//   let newArray = [];
+//   array.forEach((value) => {
+//     let filteredArray = array.filter((element) => value !== element);
+//     newArray.push(filteredArray.reduce(product, 1));
+//   });
+//   return newArray;
+// }
+// console.log(productSum([1, 2, 3, 4, 5]));
