@@ -43,9 +43,10 @@
 
 // or;
 
-// function product(a, b) {
-//   return a * b;
-// }
+//
+
+// let product = (a, b) =>  a * b;
+
 // function productSum(array) {
 //   let newArray = [];
 //   array.forEach((value) => {
@@ -55,3 +56,38 @@
 //   return newArray;
 // }
 // console.log(productSum([1, 2, 3, 4, 5]));
+
+// shorter version
+
+// let product = (a, b) => a * b;
+// let productSum = (arr) => arr.map(x => arr.filter(y => x !== y ).reduce(product, 1));
+
+// This problem was asked by IBM.
+
+// Given a string with repeated characters, rearrange the string so that no two adjacent characters are the same. If this is not possible, return None.
+
+// For example, given "aaabbc", you could return "ababac". Given "aaab", return None
+
+function repeatedChar(string) {
+  let stringSplitted = string.split("");
+  let newString = "";
+  stringSplitted.forEach((letter) => {});
+  console.log(stringSplitted);
+}
+
+// console.log(repeatedChar("aaabbc"));
+
+// Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+// For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
+// You can modify the input array in-place.
+function missingInteger(array) {
+  let filteredArray = array.sort().filter((number) => number > 0);
+  for (let i = 0; i < filteredArray.length; i++) {
+    if (filteredArray[i] + 1 !== filteredArray[i + 1]) {
+      let missingValue = filteredArray[i] + 1;
+      return missingValue;
+      break;
+    }
+  }
+}
+console.log(missingInteger([3, 4, -1, 1]));
