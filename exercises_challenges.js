@@ -80,14 +80,49 @@ function repeatedChar(string) {
 // Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
 // For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
 // You can modify the input array in-place.
-function missingInteger(array) {
-  let filteredArray = array.sort().filter((number) => number > 0);
-  for (let i = 0; i < filteredArray.length; i++) {
-    if (filteredArray[i] + 1 !== filteredArray[i + 1]) {
-      let missingValue = filteredArray[i] + 1;
-      return missingValue;
-      break;
+// function missingInteger(array) {
+//   let filteredArray = array.sort().filter((number) => number > 0);
+//   for (let i = 0; i < filteredArray.length; i++) {
+//     if (filteredArray[i] + 1 !== filteredArray[i + 1]) {
+//       let missingValue = filteredArray[i] + 1;
+//       return missingValue;
+//       break;
+//     }
+//   }
+// }
+// console.log(missingInteger([3, 4, -1, 1]));
+
+// This problem was asked by Microsoft.
+
+// Compute the running median of a sequence of numbers. That is, given a stream of numbers, print out the median of the list so far on each new element.
+
+// Recall that the median of an even-numbered list is the average of the two middle numbers.
+
+// For example, given the sequence [2, 1, 5, 7, 2, 0, 5], your algorithm should print out:
+
+// 2
+// 1.5
+// 2
+// 3.5
+// 2
+// 2
+// 2
+
+function activeMedian(array) {
+  let medianValues = [];
+  let median;
+  let mid = Math.ceil(medianValues.length / 2.0);
+
+  array.forEach((e) => {
+    medianValues.push(e);
+    medianValues.sort();
+    if (medianValues.length > 2) {
+      median = medianValues % 2 === 0 ? (medianValues[mid] + medianValues[mid - 1]) / 2.0 : medianValues[mid - 1.0];
+    } else {
+      median = medianValues[mid];
     }
-  }
+    console.log(median);
+  });
 }
-console.log(missingInteger([3, 4, -1, 1]));
+
+console.log(activeMedian([2, 1, 5, 7, 2, 0, 5]));

@@ -265,8 +265,6 @@
 # single_string = ""
 # p strings.map { |string| string.each { |value| single_string += value } }.join
 
-
-
 #  1. Convert an array of arrays into a hash.
 #     For example, [[1, 3], [8, 9], [2, 16]] becomes {1 => 3, 8 => 9, 2 => 16}.
 
@@ -388,14 +386,6 @@
 # 10. Given a hash, create a new hash that has the keys and values switched.
 #     For example, {"a" => 1, "b" => 2, "c" => 3} becomes {1 => "a", 2 => "b", 3 => "c"}.
 
-
-
-
-
-
-
-
-
 # numbers = [2, 4, 6]
 
 # def max_product(array)
@@ -425,3 +415,132 @@
 # end
 
 # p substring.join
+
+# Write the solutions to each problem here!
+
+# 1
+
+# Ruby Methods Practice (the second)
+
+# Today we're going to continue to get familiar with some ruby methods that are popular and great to know about! These problems will also help sharpen your technical interview skills and algorithm solving abilities.
+
+# #### Exercise
+
+# Solve the below problems in the `ruby_methods_2_solution.rb` file inside this folder. Remember to break down the problems into smaller steps when you get stuck. Don't worry about finding the most elegant or clever solution - focus on getting it to work!
+
+# 1. Read about the Ruby `select` method. Then refactor the code below using `select`.
+
+# ```ruby
+numbers = [1, 2, 4, 2]
+
+p numbers.select { |value| value.even? }
+
+# 2. Use the `select` method with the following array of hashes
+
+movies = [
+  { id: 1, title: "Die Hard", rating: 4.0 },
+  { id: 2, title: "Bad Boys", rating: 5.0 },
+  { id: 3, title: "The Chamber", rating: 3.0 },
+  { id: 4, title: "Fracture", rating: 2.0 },
+]
+
+# to create a new array of hashes that only contain movies with a rating less than 4.0.
+
+p movies.select { |movie| movie[:rating] < 4.0 }
+
+# 3. Use the `select` method combined with the `map` method to convert the array of hashes
+
+movies = [
+  { id: 1, title: "Die Hard", rating: 4.0 },
+  { id: 2, title: "Bad Boys", rating: 5.0 },
+  { id: 3, title: "The Chamber", rating: 3.0 },
+  { id: 4, title: "Fracture", rating: 2.0 },
+]
+
+# into an array of hashes that only contain movie ids of the movies with the letter 'b' in the title (case insensitive). The result should look like:
+
+# ```
+# [2, 3]
+
+p movies.select { |movie| movie[:title].downcase.include?("b") }.map { |movie| movie[:id] }
+
+# 4. Write a method called `palindrome?` which should accept a string as a parameter and return a boolean that indicates whether the string is a palindrome. A palindrome is a word that reads the same both forwards and backwards. Examples: eye, madam, racecar
+
+# def palindrome?(word)
+#   word == word.split("").reverse.join("")
+# end
+
+def palindrome?(word)
+  reverse_word = []
+  word.split("").each do |letter|
+    reverse_word.unshift(letter)
+  end
+  return word == reverse_word.join("")
+end
+
+p palindrome?("tacocat")
+p palindrome?("wazzzzup")
+
+# 5. Write a method called `split_array`, with two parameters, the first being an array, and the second being an integer. The method will then create an array of other arrays, each one being the size of the indicated by the second parameter.
+
+def split_array(array, size)
+  new_array = []
+  new_array << array.shift(size) until array.empty?
+  return new_array
+end
+
+p split_array([0, 1, 2, 3, 4, 5], 2)
+p split_array([0, 1, 2, 3, 4, 5], 3)
+
+# Ruby Methods 3
+
+#### Exercise
+
+# Solve the below problems in the `ruby_method_3_solution.rb` file inside this folder. Remember to break down the problems into smaller steps when you get stuck. Don't worry about finding the most elegant or clever solution - focus on getting it to work!
+
+# 1. Read about the Ruby `reduce` method. Then refactor the code below using `reduce`.
+# ruby
+numbers = [1, 2, 4, 2]
+# sum = 0
+# numbers.each do |number|
+#   sum += number
+# end
+# p sum
+
+p numbers.reduce(:+)
+
+# 2. Write a method called `scrabble_score` which should accept a string as a parameter and return the amount of points it is worth in Scrabble. You can use the following hash to determine how many points each letter is worth:
+# ruby
+
+# Use the `reduce` method to perform the computation in your scrabble_score method. The code should work as follows:
+# ruby
+
+def scrabble_score(word)
+  points = { "a" => 1, "b" => 3, "c" => 3, "d" => 2, "e" => 1, "f" => 4, "g" => 2, "h" => 4, "i" => 1, "j" => 8, "k" => 5, "l" => 1, "m" => 3, "n" => 1, "o" => 1, "p" => 3, "q" => 10, "r" => 1, "s" => 1, "t" => 1, "u" => 1, "v" => 4, "w" => 4, "x" => 8, "y" => 4, "z" => 10 }
+  word.chars.map { |letter| points[letter.downcase] }.reduce(:+)
+end
+
+p scrabble_score("scholar")  #=> 12
+# 3. Use the methods `map`, `select`, and `reduce` with the following array of hashes:
+# ruby
+# items = [
+#   {title: "NoDBA", words: 561, tags: ["nosql", "people", "orm"], type: :book},
+#   {title: "Infodeck", words: 1145, tags: ["nosql", "writing"], type: :book},
+#   {title: "OrmHate", words: 1718, tags: ["nosql", "orm"], type: :book},
+#   {title: "ruby", words: 1313, tags: ["ruby"], type: :article},
+#   {title: "DDD_Aggregate", words: 482, tags: ["nosql", "ddd"], type: :book}
+# ]
+
+# and calculate the total amount of words for all items of type `:book`. The result should be
+# ruby
+# 3906
+
+# 4. Write a method called `mutation?`, which will accept two strings as a parameter and return true if all the letters from the second string are contained within the first string, and false otherwise.
+
+# p mutation?("burly", "ruby")    #=> true
+# p mutation?("burly", "python")  #=> false
+
+# 5. Write a method called `sum_of_range`, which will accept an array containing two numbers, and return the sum of all of the whole numbers within the range of those numbers, inclusive.
+
+# p sum_of_range([1, 4])  #=> 10
+# p sum_of_range([4, 1])  #=> 10
