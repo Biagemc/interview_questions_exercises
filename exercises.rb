@@ -520,7 +520,7 @@ def scrabble_score(word)
   word.chars.map { |letter| points[letter.downcase] }.reduce(:+)
 end
 
-p scrabble_score("scholar")  #=> 12
+# p scrabble_score("scholar")  #=> 12
 # 3. Use the methods `map`, `select`, and `reduce` with the following array of hashes:
 # ruby
 # items = [
@@ -544,3 +544,47 @@ p scrabble_score("scholar")  #=> 12
 
 # p sum_of_range([1, 4])  #=> 10
 # p sum_of_range([4, 1])  #=> 10
+
+p (1 + 2) / 2.to_f
+
+def group_by_owners(files)
+  group_owner = {}
+  files.each do |key, value|
+    if group_owner[value] == nil
+      group_owner[value] = []
+    end
+    group_owner[value] << key
+  end
+  return group_owner
+end
+
+files = {
+  "Input.txt" => "Randy",
+  "Code.py" => "Stan",
+  "Output.txt" => "Randy",
+}
+# puts group_by_owners(files)
+
+# A given array has one pair of duplicate values. Return the duplicate value.
+
+# NOTE: You must accomplish this in O(n) time. This is also known as linear time.
+
+# Input: [5, 2, 9, 7, 2, 6]
+# Output: 2
+
+def duplicate_values(array)
+  new_object = {}
+  dup = nil
+  array.each do |value|
+    new_object[value] = (new_object[value] || 0) + 1
+
+    if new_object[value] > 1
+      dup = value
+      break
+    end
+  end
+
+  return dup
+end
+
+p duplicate_values([5, 2, 9, 7, 2, 6])

@@ -110,18 +110,17 @@ function repeatedChar(string) {
 
 function activeMedian(array) {
   let medianValues = [];
-  let median;
-  let mid = Math.ceil(medianValues.length / 2.0);
-
-  array.forEach((e) => {
-    medianValues.push(e);
+  let median = 0;
+  array.forEach((number) => {
+    let mid = Math.floor(medianValues.length / 2.0).toFixed(1);
+    console.log("Mid", mid);
+    medianValues.push(number);
     medianValues.sort();
-    if (medianValues.length > 2) {
-      median = medianValues % 2 === 0 ? (medianValues[mid] + medianValues[mid - 1]) / 2.0 : medianValues[mid - 1.0];
-    } else {
-      median = medianValues[mid];
-    }
-    console.log(median);
+    console.log("Array of Values", medianValues);
+    median =
+      medianValues.length % 2 === 0 ? (medianValues[mid - 1] + medianValues[mid]).toFixed(1) / 2 : medianValues[mid];
+
+    console.log("Current Median", median);
   });
 }
 

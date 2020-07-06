@@ -193,7 +193,7 @@ function palindrome(str) {
   });
 }
 
-module.exports = palindrome;
+
 
 // function palindrome(str) {
 //   const reversed = str.split("").reverse().join("");
@@ -215,7 +215,7 @@ function reverseInt(n) {
   return parseInt(reverse) * Math.sign(n);
 }
 
-module.exports = reverseInt;
+
 
 // function reverseInt(n) {
 //   let num = n.toString().split("");
@@ -240,7 +240,7 @@ function reverse(str) {
   return str.split("").reduce((rev, char) => char + rev, "");
 }
 
-module.exports = reverse;
+
 
 // function reverse(str) {git
 //   let reversed = "";
